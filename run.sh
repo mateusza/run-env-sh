@@ -9,7 +9,7 @@ ANSIBLE_HOME="${PWD}"
 ANSIBLE_CONFIG="${ANSIBLE_HOME}/ansible.cfg"
 PYTHON="python3"
 VENV_PROVIDERS=(virtualenv venv)
-ANSIBLE_PACKAGES=()
+PIP_PACKAGES=(ansible ansible-lint)
 HISTFILESIZE=10000
 HISTSIZE=10000
 
@@ -35,7 +35,7 @@ then
         then
             echo "${venv_provider}: created with $PYTHON"
             echo "virtual env binaries:"
-            find "$ENV_DIR" | grep bin
+            find "$ENV_DIR/bin"
             break
         fi
         echo "${venv_provider}: failed to create environment"
@@ -54,7 +54,7 @@ echo "python version: "$("$PYTHON" --version)
 
 if ! python -m ansible inventory --list > /dev/null
 then
-    "$PYTHON" -m pip install "${ANSIBLE_PACKAGES[@]}"
+    "$PYTHON" -m pip install "${PIP_PACKAGES[@]}"
 fi
 
 exec bash
