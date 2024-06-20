@@ -44,18 +44,18 @@ fi
 
 source "$ENV_DIR"/bin/activate
 
-echo "python version: "$("$PYTHON" --version)
-
-if ! [[ -e "$ENV_DIR"/bin/ansible ]] || ! [[ -e "$ENV_DIR"/bin/ansible-lint ]]
-then
-    "$PYTHON" -m pip install "${ANSIBLE_PACKAGES[@]}"
-fi
-
 export ANSIBLE_HOME
 export ANSIBLE_CONFIG
 export HISTFILE
 export HISTFILESIZE
 export HISTSIZE
+
+echo "python version: "$("$PYTHON" --version)
+
+if ! python -m ansible inventory --list > /dev/null
+then
+    "$PYTHON" -m pip install "${ANSIBLE_PACKAGES[@]}"
+fi
 
 exec bash
 
