@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# https://raw.githubusercontent.com/mateusza/run-env-sh/master/run.sh
+
 ENV_DIR=~/.local/my.env
 HISTFILE="${ENV_DIR}/.bash_history"
 
@@ -12,9 +14,11 @@ HISTFILESIZE=10000
 HISTSIZE=10000
 
 
-if [[ -e run.conf.sh ]]; then
-    source run.conf.sh
+if ! [[ -e run.conf.sh ]]; then
+    touch run.conf.sh
 fi
+
+source run.conf.sh
 
 if [[ -n "$VIRTUAL_ENV_PROMPT" ]] || [[ -n "$VIRTUAL_ENV" ]]
 then
