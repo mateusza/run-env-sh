@@ -15,10 +15,10 @@ HISTSIZE=10000
 
 
 if ! [[ -e run.conf.sh ]]; then
-    touch run.conf.sh
+    touch .run.conf.sh
 fi
 
-source run.conf.sh
+source .run.conf.sh
 
 if [[ -n "$VIRTUAL_ENV_PROMPT" ]] || [[ -n "$VIRTUAL_ENV" ]]
 then
