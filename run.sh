@@ -12,13 +12,13 @@ VENV_PROVIDERS=(virtualenv venv)
 PIP_PACKAGES=(ansible ansible-lint)
 HISTFILESIZE=10000
 HISTSIZE=10000
+RUN_CONF_FILE='.run.conf.sh'
 
-
-if ! [[ -e run.conf.sh ]]; then
-    touch .run.conf.sh
+if ! [[ -e "$RUN_CONF_FILE" ]]; then
+    touch "$RUN_CONF_FILE"
 fi
 
-source .run.conf.sh
+source "$RUN_CONF_FILE"
 
 if [[ -n "$VIRTUAL_ENV_PROMPT" ]] || [[ -n "$VIRTUAL_ENV" ]]
 then
